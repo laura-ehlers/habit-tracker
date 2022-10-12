@@ -41,7 +41,16 @@ def show_habits():
     c.execute('SELECT * FROM habits')
     return c.fetchall()
     
-        
+def show_weekly_habits():
+    with conn:
+        c.execute("SELECT * FROM habits WHERE period = 'Weekly'")
+        return c.fetchall()  
+    
+def show_daily_habits():
+    with conn:
+        c.execute("SELECT * FROM habits WHERE period = 'Daily'")
+        return c.fetchall()  
+    
 def modify_name(habit_id, habit_name):
     with conn:
         c.execute('UPDATE habits SET habit_name = :habit_name WHERE habit_id = :habit_id',

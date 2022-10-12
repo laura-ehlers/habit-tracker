@@ -3,7 +3,7 @@
 
 - habit class as OOP  ✅
 - define habit ✅
-- periodicity habit 
+- periodicity habit ✅
 - task can be completed at any point in time ✅
 - break the habit functionality : 
   - each task has to be checked of once during defined period
@@ -28,7 +28,7 @@
   - Python 3.7 or later ✅
   - installation and run instructions (README.md)
   - Documentation in code with docstrings
-  - weekly and daily habits 
+  - weekly and daily habits ✅
   - 5 predefined habits (at least one weekly/daily)
   - document how new habits can be added and completed (instruction manual)
   - each predefined habit should have example tracking data of 4 weeks
@@ -74,3 +74,14 @@
   - and return the longest run streak for a given habit.
 5 Table on main page with all habits (point 2)
 6 Database which saves currently existing habits
+
+
+### Last status
+- analytics functionality has to be done. 
+- implemented separate weekly and daily table that can be used
+- basic functionality stands
+- streak functionality next 
+- datetime relativedelta module could be used to track days https://dateutil.readthedocs.io/en/stable/relativedelta.html#examples
+- most functionality could be done with prompts
+- unit test have to be done last
+- for the break the habit functionality I need the streak (compare with last date if checked)
