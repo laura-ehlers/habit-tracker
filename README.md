@@ -81,7 +81,7 @@
 - implemented separate weekly and daily table that can be used
 - basic functionality stands
 - streak functionality next 
-- datetime relativedelta module could be used to track days https://dateutil.readthedocs.io/en/stable/relativedelta.html#examples
+- datetime relativedelta module could be used to track multiple days https://dateutil.readthedocs.io/en/stable/relativedelta.html#examples
 - most functionality could test be done with prompts
 - unit test have to be done last
 - for the break the habit functionality I need the streak (compare with last date if checked) ✅
