@@ -9,7 +9,28 @@ from database import get_all_habits, delete_habit_from_db, insert_habit, toggle_
 console = Console() #create Console object from rich library
 app = typer.Typer() #create Typer object, Typer=CLI
 
-
+@app.command(short_help="Start of the application")
+def start_app():
+    '''
+    - starting point of the application
+    - shows user everything they can do with the app
+    - can be repeated as often as wanted
+    '''
+    first_run = True
+    while first_run==True or end_decision == "Yes":
+        start_decision = questionary.select("What do you want to do?", choices=["Add a habit", "Delete a habit", "Update a habit", "Show all habits"]).ask()
+        match start_decision:
+            case "Add a habit":
+                add_habit()
+            case "Delete a habit":
+                delete_habit()
+            case "Update a habit":
+                update_habit()
+            case "Show all habits":
+                show_habit()
+        first_run = False
+        end_decision = questionary.select("Do you want to do anything else?", choices=["Yes", "No"]).ask()
+    
 @app.command(short_help='adds a new habit')
 def add_habit():
     habit_name = questionary.text("What is the name of the habit you want to create?").ask()
