@@ -1,2 +1,5 @@
-position,habit_name,category,duration,date_created,last_date_checked,streak,status
-1,Make the bed,Work,Weekly,2023-07-10,2023-08-21,3,2
+habit_name,category,duration,date_created,last_date_checked,streak,status
+Make the bed,Work,Weekly,2023-07-10,2023-08-21,3,2
+Cuddle dog,Work,Weekly,2023-07-10,2023-08-21,3,2
+Cuddle dog,Work,Weekly,2023-07-10,2023-08-21,3,2
+Cuddle dog,Work,Weekly,2023-07-10,2023-09-10,3,1
