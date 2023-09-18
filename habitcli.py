@@ -2,24 +2,34 @@ import typer
 from rich.console import Console
 from rich.table import Table
 from habit import Habit
-import questionary 
+import questionary
 from base import add_habit, delete_habit, update_habit, show_habit, check_habit
 import helpers
 
 console = Console()
-app = typer.Typer() #create Typer object, Typer=CLI
+app = typer.Typer()  # create Typer object, Typer=CLI
+
 
 @app.command(short_help="Start of the application")
 def start_app():
-    '''
+    """
     - starting point of the application
     - shows user everything they can do with the app
     - can be repeated as often as wanted
-    '''
+    """
     print(helpers.increment_streak)
     first_run = True
-    while first_run==True or end_decision == "Yes":
-        start_decision = questionary.select("What do you want to do?", choices=["Add a habit", "Delete a habit", "Update a habit", "Show all habits", "Check a habit"]).ask()
+    while first_run == True or end_decision == "Yes":
+        start_decision = questionary.select(
+            "What do you want to do?",
+            choices=[
+                "Add a habit",
+                "Delete a habit",
+                "Update a habit",
+                "Show all habits",
+                "Check a habit",
+            ],
+        ).ask()
         match start_decision:
             case "Add a habit":
                 add_habit()
@@ -32,8 +42,10 @@ def start_app():
             case "Check a habit":
                 check_habit()
         first_run = False
-        end_decision = questionary.select("Do you want to do anything else?", choices=["Yes", "No"]).ask()
-    
+        end_decision = questionary.select(
+            "Do you want to do anything else?", choices=["Yes", "No"]
+        ).ask()
 
-if __name__ == "__main__": #if todocli.py is run as standalone name = main we run app
+
+if __name__ == "__main__":  # if todocli.py is run as standalone name = main we run app
     app()
