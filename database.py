@@ -3,7 +3,7 @@ from typing import List
 import datetime
 from habit import Habit
 import csv
-import pandas as pd
+
 
 conn = sqlite3.connect(
     "habits.db"
@@ -136,18 +136,17 @@ def toggle_habit_status_from_db(position: int, new_status: int):
 
 
 def get_habit_by_position(position: int):
+    c.execute(
+        "SELECT position, streak, last_date_checked FROM habits WHERE position = :position",
+        {"position": position},
+    )  # select all from todos
     row = c.fetchone()
-    while row is not None:
-        with conn:
-            c.execute(
-                "SELECT position, streak, last_date_checked FROM habits WHERE position = :position",
-                {"position": position},
-            )  # select all from todos
-            return {
-                "position": c.fetchone()[0],
-                "streak": c.fetchone()[1],
-                "last_date_checked": c.fetchone()[2],
-            }
+    with conn:
+        return {
+            "position": row[0],
+            "streak": row[1],
+            "last_date_checked": row[2],
+        }
 
 
 def get_number_of_habits():
@@ -170,7 +169,7 @@ def read_csv():
         date_created = ""
         last_date_checked = ""
         streak = ""
-        status = 0
+        status = 1
 
         table_query = """CREATE TABLE IF NOT EXISTS habits( 
             position integer,

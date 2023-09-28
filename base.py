@@ -98,12 +98,13 @@ def check_habit():
     new_status = 2 if status_query == "Completed" else 1
     # increase streak if cur_date is not greater than last_date_checked or if there is no last_date_checked
     increment_streak(position)
-    toggle_habit_status_from_db(position - 1, new_status)
+    toggle_habit_status_from_db(position, new_status)
     show_habit()
 
 
 def show_habit():
     habits = get_all_habits()
+    print(get_all_habits())
     console.print(
         "[bold magenta]Habits[/bold magenta]!", "💻"
     )  # color styling for printing in console
@@ -122,15 +123,17 @@ def show_habit():
     for idx, habit in enumerate(habits, start=1):  # starts at 1 to iterate
         # print(type(habit))
         # print(habit, idx)
+        print(habit.status)
         duration_str = habit.duration
         is_done_str = (
             "✅" if habit.status == 2 else "❌"
         )  # at the beginning checked and true
+        print(habit.status)
         table.add_row(
             str(idx), habit.habit_name, habit.category, duration_str, is_done_str
         )  # add table row with number, task, category (with styling due to f'[{c}], is done string
     console.print(table)  # output table
 
     # def get_sample_data():
-    write_csv()
-    read_csv()
+    #write_csv()
+    #read_csv()
