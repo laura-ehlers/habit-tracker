@@ -136,6 +136,6 @@ def show_habit():
     console.print(table)  # output table
     
 
-    # def get_sample_data():
-    # write_csv()
-    # read_csv()
+def get_sample_data():
+        write_csv()
+        read_csv()
