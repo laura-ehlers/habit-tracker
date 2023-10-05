@@ -220,3 +220,7 @@ def calculate_position():
     else:
         count += 1
         return count
+
+def delete_all_habits_from_db():
+    with conn:
+        c.execute('DROP TABLE habits')
