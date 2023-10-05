@@ -130,9 +130,19 @@ def toggle_habit_status_from_db(position: int, new_status: int):
             {
                 "position": position,
                 "status": new_status,
-                "last_date_checked": datetime.datetime.now().replace(second= 0, microsecond = 0)
+                "last_date_checked": datetime.datetime.now().replace(
+                    second=0, microsecond=0
+                ),
             },
         )  # status 2 =completed, get date when completed
+
+
+def calculate_streak(position: int, streak: int):
+    with conn:
+        c.execute(
+            "UPDATE habits SET streak = :streak WHERE position = :position",
+            {"position": position, "streak": streak},
+        )
 
 
 def get_habit_by_position(position: int):
