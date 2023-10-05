@@ -31,7 +31,8 @@ def add_habit():
     duration = questionary.select(
         "Do you want to do this habit daily or weekly?", choices=["Daily", "Weekly"]
     ).ask()
-    date_created = datetime.date.today()
+    date_created = datetime.datetime.now().replace(second= 0, microsecond = 0)
+
     typer.echo(f"adding {habit_name} {category} {duration} {date_created}")
     habit = Habit(get_number_of_habits(), habit_name, category, duration, date_created)
     insert_habit(habit)
@@ -86,6 +87,9 @@ def update_habit():
 
 
 def check_habit():
+    # write_csv()
+    # read_csv()
+    
     position = int(
         questionary.text("At which position is the habit you want to update?").ask()
     )
@@ -104,7 +108,6 @@ def check_habit():
 
 def show_habit():
     habits = get_all_habits()
-    print(get_all_habits())
     console.print(
         "[bold magenta]Habits[/bold magenta]!", "💻"
     )  # color styling for printing in console
@@ -123,16 +126,15 @@ def show_habit():
     for idx, habit in enumerate(habits, start=1):  # starts at 1 to iterate
         # print(type(habit))
         # print(habit, idx)
-        print(habit.status)
         duration_str = habit.duration
         is_done_str = (
             "✅" if habit.status == 2 else "❌"
         )  # at the beginning checked and true
-        print(habit.status)
         table.add_row(
             str(idx), habit.habit_name, habit.category, duration_str, is_done_str
         )  # add table row with number, task, category (with styling due to f'[{c}], is done string
     console.print(table)  # output table
+    
 
     # def get_sample_data():
     #write_csv()

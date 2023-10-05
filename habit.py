@@ -8,7 +8,7 @@ class Habit:
         habit_name,
         category,
         duration,
-        date_created=None,
+        date_created=datetime.datetime.now().replace(second= 0, microsecond = 0),
         last_date_checked=None,  # optional fields
         streak=0,
         status=1,
@@ -19,7 +19,7 @@ class Habit:
         self.duration = duration  # weekly or daily
 
         self.date_created = (
-            date_created if date_created is not None else datetime.date.today()
+            date_created
         )  # check if date_added argument exists, isoformat outputs string
         self.last_date_checked = (
             last_date_checked if last_date_checked is not None else None
