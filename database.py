@@ -130,7 +130,7 @@ def toggle_habit_status_from_db(position: int, new_status: int):
             {
                 "position": position,
                 "status": new_status,
-                "last_date_checked": datetime.date.today(),
+                "last_date_checked": datetime.datetime.now().replace(second= 0, microsecond = 0)
             },
         )  # status 2 =completed, get date when completed
 
