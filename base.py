@@ -12,6 +12,7 @@ from database import (
     update_habit_from_db,
     get_number_of_habits,
     read_csv,
+    delete_all_habits_from_db
 )
 from helpers import increment_streak, write_csv
 
@@ -139,3 +140,8 @@ def show_habit():
 def get_sample_data():
         write_csv()
         read_csv()
+
+def delete_all_habits():
+    confirm = questionary.select("Are you sure?", choices= ["Yes", "No"]).ask()
+    if confirm == "Yes":  
+        delete_all_habits_from_db()
