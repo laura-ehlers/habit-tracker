@@ -3,7 +3,7 @@ from rich.console import Console
 from rich.table import Table
 from habit import Habit
 import questionary
-from base import add_habit, delete_habit, update_habit, show_habit, check_habit
+from base import add_habit, delete_habit, update_habit, show_habit, check_habit, get_sample_data
 import helpers
 
 console = Console()
@@ -28,6 +28,7 @@ def start_app():
                 "Update a habit",
                 "Show all habits",
                 "Check a habit",
+                "Add habits from sample data"
             ],
         ).ask()
         match start_decision:
@@ -41,6 +42,9 @@ def start_app():
                 show_habit()
             case "Check a habit":
                 check_habit()
+            case "Add habits from sample data":
+                get_sample_data()
+                
         first_run = False
         end_decision = questionary.select(
             "Do you want to do anything else?", choices=["Yes", "No"]
