@@ -14,7 +14,8 @@ from database import (
     read_csv,
     delete_all_habits_from_db
 )
-from helpers import increment_streak, write_csv
+from helpers import increment_streak
+from create_csv import write_csv
 
 console = Console()
 app = typer.Typer()
