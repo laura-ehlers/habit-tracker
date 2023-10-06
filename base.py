@@ -47,7 +47,7 @@ def delete_habit():
         questionary.text("At which position is the habit you want to delete?").ask()
     )
     typer.echo(f"deleting {position}")
-    delete_habit_from_db(position - 1)
+    delete_habit_from_db(position + 1)
     show_habit()
 
 

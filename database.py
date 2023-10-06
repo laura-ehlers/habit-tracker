@@ -71,15 +71,16 @@ def get_all_habits() -> List[Habit]:
 # create function to delete Todos
 def delete_habit_from_db(position):
     c.execute("select count(*) from habits")
-    count = c.fetchone()[0]  # get number of items in table
+    count = c.fetchone()[0]
+    # get number of items in table
 
     with conn:
         c.execute(
             "DELETE from habits WHERE position=:position", {"position": position}
         )  # execute deletion command
-        for pos in range(position + 1, count):
+        for pos in range(position, count + 1):
             change_position(
-                pos, pos - 1, False
+                pos, pos - 1, True
             )  # shift all remaining items one position down, when left it calls commit
 
 
@@ -221,6 +222,7 @@ def calculate_position():
         count += 1
         return count
 
+
 def delete_all_habits_from_db():
     with conn:
-        c.execute('DROP TABLE habits')
+        c.execute("DROP TABLE habits")
