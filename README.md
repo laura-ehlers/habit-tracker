@@ -85,3 +85,5 @@
 - most functionality could test be done with prompts
 - unit test have to be done last
 - for the break the habit functionality I need the streak (compare with last date if checked) ✅
+
+source venv/bin/activate

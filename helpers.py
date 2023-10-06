@@ -1,11 +1,8 @@
-import typer
 from rich.console import Console
 from rich.table import Table
 from habit import Habit
-import questionary
 import datetime as dt
 from database import get_habit_by_position, calculate_streak
-import csv
 
 
 def increment_streak(position: int):
@@ -55,64 +52,3 @@ def increment_streak(position: int):
     calculate_streak(cur_habit["position"], cur_habit["streak"])
 
     return cur_habit
-
-
-def write_csv():
-    with open("sample_data.csv", "w", newline="") as file:
-        writer = csv.writer(file)
-
-        writer.writerow(
-            [
-                "habit_name",
-                "category",
-                "duration",
-                "date_created",
-                "last_date_checked",
-                "streak",
-                "status",
-            ]
-        )
-        writer.writerow(
-            [
-                "Make the bed",
-                "Work",
-                "Weekly",
-                "2023-07-10 11:10:00",
-                "2023-08-21 15:10:00",
-                "3",
-                2,
-            ]
-        )
-        writer.writerow(
-            [
-                "Cuddle dog",
-                "Work",
-                "Weekly",
-                "2023-07-10 19:10:00",
-                "2023-08-21 12:10:00",
-                "3",
-                2,
-            ]
-        )
-        writer.writerow(
-            [
-                "Cuddle dog",
-                "Work",
-                "Weekly",
-                "2023-07-10 17:10:00",
-                "2023-08-21 17:10:00",
-                "3",
-                2,
-            ]
-        )
-        writer.writerow(
-            [
-                "Cuddle dog",
-                "Work",
-                "Weekly",
-                "2023-07-10 13:10:00",
-                "2023-10-04 11:10:00",
-                "3",
-                1,
-            ]
-        )
