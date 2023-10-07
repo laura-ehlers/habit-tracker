@@ -84,7 +84,7 @@ def update_habit():
             new_state = 2 if new_attr else 1
             new_attributes.append({"attr_name": "status", "attr_value": new_state})
 
-    update_habit_from_db(position - 1, new_attributes)
+    update_habit_from_db(position, new_attributes)
     show_habit()
 
 
