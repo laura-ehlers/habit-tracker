@@ -19,7 +19,7 @@ def write_csv():
             [
                 "Make the bed",
                 "Housework",
-                "Daily",
+                "Weekly",
                 "2023-09-01 11:10:00",
                 "2023-10-05 15:10:00",
                 "10",

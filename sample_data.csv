@@ -1,5 +1,5 @@
 habit_name,category,duration,date_created,last_date_checked,streak,status
-Make the bed,Housework,Daily,2023-09-01 11:10:00,2023-10-05 15:10:00,10,1
+Make the bed,Housework,Weekly,2023-09-01 11:10:00,2023-10-05 15:10:00,10,1
 Finish assignment,Work,Weekly,2023-08-20 19:10:00,2023-09-20 12:10:00,28,1
 Take notes,University,Daily,2023-07-10 17:10:00,2023-10-04 12:10:00,10,1
 Read book,Freetime,Daily,2023-07-23 13:10:00,2023-10-05 11:10:00,22,1

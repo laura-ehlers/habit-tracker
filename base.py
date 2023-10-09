@@ -12,7 +12,7 @@ from database import (
     update_habit_from_db,
     get_number_of_habits,
     read_csv,
-    delete_all_habits_from_db
+    delete_all_habits_from_db,
 )
 from helpers import increment_streak
 from create_csv import write_csv
@@ -33,7 +33,7 @@ def add_habit():
     duration = questionary.select(
         "Do you want to do this habit daily or weekly?", choices=["Daily", "Weekly"]
     ).ask()
-    date_created = datetime.datetime.now().replace(second= 0, microsecond = 0)
+    date_created = datetime.datetime.now().replace(second=0, microsecond=0)
 
     typer.echo(f"adding {habit_name} {category} {duration} {date_created}")
     habit = Habit(get_number_of_habits(), habit_name, category, duration, date_created)
@@ -91,7 +91,7 @@ def update_habit():
 def check_habit():
     # write_csv()
     # read_csv()
-    
+
     position = int(
         questionary.text("At which position is the habit you want to update?").ask()
     )
@@ -103,8 +103,9 @@ def check_habit():
     typer.echo(f"new status: {status_query}")
     new_status = 2 if status_query == "Completed" else 1
     # increase streak if cur_date is not greater than last_date_checked or if there is no last_date_checked
-    increment_streak(position)
-    toggle_habit_status_from_db(position, new_status)
+    toggle_allowed = increment_streak(position)
+    if toggle_allowed:
+        toggle_habit_status_from_db(position, new_status)
     show_habit()
 
 
@@ -136,13 +137,14 @@ def show_habit():
             str(idx), habit.habit_name, habit.category, duration_str, is_done_str
         )  # add table row with number, task, category (with styling due to f'[{c}], is done string
     console.print(table)  # output table
-    
+
 
 def get_sample_data():
-        write_csv()
-        read_csv()
+    write_csv()
+    read_csv()
+
 
 def delete_all_habits():
-    confirm = questionary.select("Are you sure?", choices= ["Yes", "No"]).ask()
-    if confirm == "Yes":  
+    confirm = questionary.select("Are you sure?", choices=["Yes", "No"]).ask()
+    if confirm == "Yes":
         delete_all_habits_from_db()
