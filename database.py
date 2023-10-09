@@ -148,7 +148,7 @@ def calculate_streak(position: int, streak: int):
 
 def get_habit_by_position(position: int):
     c.execute(
-        "SELECT position, streak, last_date_checked FROM habits WHERE position = :position",
+        "SELECT position, streak, last_date_checked, duration, status FROM habits WHERE position = :position",
         {"position": position},
     )  # select all from todos
     row = c.fetchone()
@@ -157,6 +157,8 @@ def get_habit_by_position(position: int):
             "position": row[0],
             "streak": row[1],
             "last_date_checked": row[2],
+            "duration": row[3],
+            "status": row[4]
         }
 
 
