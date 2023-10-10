@@ -3,9 +3,16 @@ from rich.console import Console
 from rich.table import Table
 from habit import Habit
 import questionary
-from base import add_habit, delete_habit, update_habit, show_habit, check_habit, get_sample_data, delete_all_habits
+from base import (
+    add_habit,
+    delete_habit,
+    update_habit,
+    show_habit,
+    check_habit,
+    get_sample_data,
+    delete_all_habits,
+)
 import helpers
-import create_csv
 
 console = Console()
 app = typer.Typer()  # create Typer object, Typer=CLI
@@ -21,34 +28,47 @@ def start_app():
     print(helpers.increment_streak)
     first_run = True
     while first_run == True or end_decision == "Yes":
-        start_decision = questionary.select(
+        feature_check = questionary.select(
             "What do you want to do?",
-            choices=[
-                "Add a habit",
-                "Delete a habit",
-                "Update a habit",
-                "Show all habits",
-                "Check a habit",
-                "Add habits from sample data",
-                "Delete all habits"
-            ],
+            choices=["Go to habits", "Analyze habits", "Admin functionality"],
         ).ask()
-        match start_decision:
-            case "Add a habit":
-                add_habit()
-            case "Delete a habit":
-                delete_habit()
-            case "Update a habit":
-                update_habit()
-            case "Show all habits":
-                show_habit()
-            case "Check a habit":
-                check_habit()
-            case "Add habits from sample data":
-                get_sample_data()
-            case "Delete all habits":
-                delete_all_habits()
-                
+        match feature_check:
+            case "Go to habits":
+                habit_decision = questionary.select(
+                    "What do you want to do?",
+                    choices=[
+                        "Add a habit",
+                        "Delete a habit",
+                        "Update a habit",
+                        "Show all habits",
+                        "Check a habit",
+                    ],
+                ).ask()
+
+                match habit_decision:
+                    case "Add a habit":
+                        add_habit()
+                    case "Delete a habit":
+                        delete_habit()
+                    case "Update a habit":
+                        update_habit()
+                    case "Show all habits":
+                        show_habit()
+                    case "Check a habit":
+                        check_habit()
+            case "Analyze habits":
+                print("Analyze habits")
+
+            case "Admin functionality":
+                admin_decision = questionary.select(
+                    "What do you want to do?",
+                    choices=["Add habits from sample data", "Delete all habits"],
+                ).ask()
+                match admin_decision:
+                    case "Add habits from sample data":
+                        get_sample_data()
+                    case "Delete all habits":
+                        delete_all_habits()
         first_run = False
         end_decision = questionary.select(
             "Do you want to do anything else?", choices=["Yes", "No"]
